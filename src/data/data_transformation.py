@@ -4,16 +4,13 @@ import os
 import sys
 from src.Exception.exception import CustomException
 from src.logger.my_logging import logger
-from src.utils.utilities import save_data,save_array,save_object
+from src.utils.utilities import save_data, save_array,save_object
 from sklearn.preprocessing import (OneHotEncoder,
                                    OrdinalEncoder,
                                    StandardScaler)
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.base import BaseEstimator, TransformerMixin
-from sklearn.compose import ColumnTransformer
-from sklearn.base import BaseEstimator, TransformerMixin
-
 
 
 class CustomPipelineCreator(BaseEstimator, TransformerMixin):
@@ -101,7 +98,7 @@ class CustomPipelineCreator(BaseEstimator, TransformerMixin):
             return preprocessor
         except Exception as e:
                 logger.error(f"error occured  while creating preprocessor with {e}")
-                raise CustomException(e,sys)   
+                raise CustomException(e, sys)   
 
     def remove_target_variable(self, X):
         """
@@ -116,9 +113,9 @@ class CustomPipelineCreator(BaseEstimator, TransformerMixin):
             return (X,y)
         except Exception as e:
                 logger.error(f"error occured  while removing target column with {e}")
-                raise CustomException(e,sys)   
+                raise CustomException(e, sys)   
     
-    def intiate_preprocessing(self,train_df,test_df):
+    def intiate_preprocessing(self, train_df, test_df):
         """
         Initialize preprocessing: remove target variable and apply the preprocessing pipeline.
         """
@@ -137,26 +134,24 @@ class CustomPipelineCreator(BaseEstimator, TransformerMixin):
             logger.info(f"preprocessor saved in {path} ")
             test_x=preprocessor.transform(test_x)
             logger.debug('applied preprocessing on test_x')
-            return (train_x,train_y,test_x,test_y)
+            return (train_x, train_y, test_x, test_y)
         except Exception as e:
                 logger.error(f"error occured during preprocessing with {e}")
-                raise CustomException(e,sys)   
+                raise CustomException(e, sys)   
 
     
 if __name__=='__main__':
      train_path = "data/external/train.csv"  
      test_path = "data/external/test.csv"
-     train_x_path="data/processed/train_x"
-     train_y_path="data/processed/train_"
-     test_x_path="data/processed/test_x"
-     test_y_path="data/processed/test_y"
+     train_x_path = "data/processed/train_x.npy"
+     train_y_path = "data/processed/train_y.npy"
+     test_x_path = "data/processed/test_x.npy"
+     test_y_path = "data/processed/test_y.npy"
      train_data=pd.read_csv(train_path)
      test_data=pd.read_csv(test_path)
      obj= CustomPipelineCreator()
-     train_x,train_y,test_x,test_y=obj.intiate_preprocessing(train_data,test_data)
-     save_array(train_x,train_x_path)  
-     save_array(train_y,train_y_path)
-     save_array(test_x,test_x_path)
-     save_array(test_y,test_y_path) 
-       
-
+     train_x,train_y,test_x,test_y=obj.intiate_preprocessing(train_data, test_data)
+     save_array(train_x, train_x_path)  
+     save_array(train_y, train_y_path)
+     save_array(test_x, test_x_path)
+     save_array(test_y, test_y_path)

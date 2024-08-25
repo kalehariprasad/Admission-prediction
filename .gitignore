@@ -91,3 +91,4 @@ target/
 #envronment
 env/
 
+/data

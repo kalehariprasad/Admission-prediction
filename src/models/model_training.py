@@ -9,6 +9,8 @@ from sklearn.ensemble import RandomForestClassifier
 
 train_x_path = "data/processed/train_x.npy"
 train_y_path = "data/processed/train_y.npy"
+test_x_path = "data/processed/test_x.npy"
+test_y_path = "data/processed/test_y.npy"
 
 
 def model_training():
@@ -17,7 +19,10 @@ def model_training():
         model = RandomForestClassifier()
         train_x = load_array(train_x_path)
         train_y = load_array(train_y_path)
+        test_x = load_array(test_x_path)
+        test_y = load_array(test_y_path)
         model = train_model(model=model, x_train=train_x, y_train=train_y)
+        pred=model.predict(test_x)
         return model
     except Exception as e:
         logger.error(f"Error occurred in model_training.py file with {e}")

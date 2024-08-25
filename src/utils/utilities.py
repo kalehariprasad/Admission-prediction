@@ -51,6 +51,20 @@ def save_object(obj,file_path):
         if not os.path.exists(directory):
             os.makedirs(directory, exist_ok=True)
         joblib.dump(obj, file_path)
+        logger.debug(f"Object saved successfully at {file_path}")
+        
+    except Exception as e:
+        logger.error(f"error occured while saving joblib with {e}")
+        raise CustomException(e,sys)
+    
+def load_object(file_path):
+    try:
+        # Check if the file exists before trying to load
+        if not os.path.exists(file_path):
+            raise FileNotFoundError(f"The file {file_path} does not exist.")
+        
+        object=joblib.load(file_path)
+        return object
         
     except Exception as e:
         logger.error(f"error occured while saving joblib with {e}")

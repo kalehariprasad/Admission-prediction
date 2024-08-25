@@ -1,0 +1,11 @@
+stages:
+  Data_injection:
+    cmd: python src/data/data_injection.py
+    deps:
+      - src/data/data_injection.py
+      - src/Exception/exception.py
+      - src/logger/my_logging.py
+      - src/utils/utilities.py
+      - data/raw
+    outs:
+      - data/external # Use a different path

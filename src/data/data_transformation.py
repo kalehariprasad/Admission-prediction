@@ -129,7 +129,7 @@ class CustomPipelineCreator(BaseEstimator, TransformerMixin):
             train_x = preprocessor.fit_transform(train_x)
             logger.debug('applied preprocessing on train_x')
             #preprocessor saving
-            path="reports/objects/preprocessor.pkl"
+            path="models/objects/preprocessor.pkl"
             save_object(preprocessor,path)
             logger.info(f"preprocessor saved in {path} ")
             test_x=preprocessor.transform(test_x)

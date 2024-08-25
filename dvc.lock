@@ -1,0 +1,32 @@
+schema: '2.0'
+stages:
+  Data_injection:
+    cmd: python src/data/data_injection.py
+    deps:
+    - path: data/raw
+      hash: md5
+      md5: 12eae1d425e243132223c508b1cb9e5b.dir
+      size: 71258
+      nfiles: 1
+    - path: src/Exception/exception.py
+      hash: md5
+      md5: 9125848bce10891e239bf496874e7a33
+      size: 837
+    - path: src/data/data_injection.py
+      hash: md5
+      md5: a320cca00ac4f755052ab9e7d853abaa
+      size: 1175
+    - path: src/logger/my_logging.py
+      hash: md5
+      md5: 9006f1ad9690de4a3d1882c859676062
+      size: 1138
+    - path: src/utils/utilities.py
+      hash: md5
+      md5: b3bf6e84f6b02f55337ff62e9cb36730
+      size: 2667
+    outs:
+    - path: data/external
+      hash: md5
+      md5: c68908d79cd1fa243b4dd5380f17bb81.dir
+      size: 72403
+      nfiles: 2

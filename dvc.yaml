@@ -8,23 +8,37 @@ stages:
     - src/utils/utilities.py
     - data/raw
     outs:
-    - data/external   # Use a different path
+    - data/external
+
   Data-transformation:
-    cmd: python src\data\data_transformation.py
+    cmd: python src/data/data_transformation.py
     deps:
     - data/external
-    - src\Exception\exception.py
-    - src\data\data_transformation.py
-    - src\logger\my_logging.py
-    - src\utils\utilities.py
+    - src/Exception/exception.py
+    - src/data/data_transformation.py
+    - src/logger/my_logging.py
+    - src/utils/utilities.py
     outs:
     - data/processed
+    - models/objects/preprocessor.pkl
 
   Model_training:
-    cmd: processed -o models
+    cmd: python src/models/model_training.py
     deps:
-    - data\
+    - data/processed
+    - src/Exception/exception.py
+    - src/logger/my_logging.py
+    - src/models/model_training.py
+    - src/utils/utilities.py
+    outs:
+    - models/model.pkl
+
+  model_evalaution:
+    cmd: python src\models\model_evaluation.py --needs Model_training
+    deps:
+    - data\processed
+    - models\model.pkl
     - src\Exception\exception.py
     - src\logger\my_logging.py
-    - src\models\model_training.py
+    - src\models\model_evaluation.py
     - src\utils\utilities.py

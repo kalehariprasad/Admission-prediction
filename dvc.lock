@@ -31,26 +31,26 @@ stages:
       size: 72403
       nfiles: 2
   Data-transformation:
-    cmd: python src\data\data_transformation.py
+    cmd: python src/data/data_transformation.py
     deps:
     - path: data/external
       hash: md5
       md5: c68908d79cd1fa243b4dd5380f17bb81.dir
       size: 72403
       nfiles: 2
-    - path: src\Exception\exception.py
+    - path: src/Exception/exception.py
       hash: md5
       md5: 9125848bce10891e239bf496874e7a33
       size: 837
-    - path: src\data\data_transformation.py
+    - path: src/data/data_transformation.py
       hash: md5
       md5: 4edb202303eb0777bc94edb22a92eab3
       size: 7358
-    - path: src\logger\my_logging.py
+    - path: src/logger/my_logging.py
       hash: md5
       md5: 9006f1ad9690de4a3d1882c859676062
       size: 1138
-    - path: src\utils\utilities.py
+    - path: src/utils/utilities.py
       hash: md5
       md5: b3bf6e84f6b02f55337ff62e9cb36730
       size: 2667
@@ -60,3 +60,64 @@ stages:
       md5: d982b03bfa4c69cdbd777c6f7ab00223.dir
       size: 113512
       nfiles: 4
+    - path: models/objects/preprocessor.pkl
+      hash: md5
+      md5: f92cda713c71cec3fae58e35a1f0a01f
+      size: 10264
+  Model_training:
+    cmd: python src/models/model_training.py
+    deps:
+    - path: data/processed
+      hash: md5
+      md5: d982b03bfa4c69cdbd777c6f7ab00223.dir
+      size: 113512
+      nfiles: 4
+    - path: src/Exception/exception.py
+      hash: md5
+      md5: 9125848bce10891e239bf496874e7a33
+      size: 837
+    - path: src/logger/my_logging.py
+      hash: md5
+      md5: 9006f1ad9690de4a3d1882c859676062
+      size: 1138
+    - path: src/models/model_training.py
+      hash: md5
+      md5: af91fb5c92d0364edabfbcd6c6ec1942
+      size: 1175
+    - path: src/utils/utilities.py
+      hash: md5
+      md5: b3bf6e84f6b02f55337ff62e9cb36730
+      size: 2667
+    outs:
+    - path: models/model.pkl
+      hash: md5
+      md5: 8a87ffd0885e4e11b8b289510bf62209
+      size: 1920601
+  model_evalaution:
+    cmd: python src\models\model_evaluation.py
+    deps:
+    - path: data\processed
+      hash: md5
+      md5: d982b03bfa4c69cdbd777c6f7ab00223.dir
+      size: 113512
+      nfiles: 4
+    - path: models\model.pkl
+      hash: md5
+      md5: 8a87ffd0885e4e11b8b289510bf62209
+      size: 1920601
+    - path: src\Exception\exception.py
+      hash: md5
+      md5: 9125848bce10891e239bf496874e7a33
+      size: 837
+    - path: src\logger\my_logging.py
+      hash: md5
+      md5: 9006f1ad9690de4a3d1882c859676062
+      size: 1138
+    - path: src\models\model_evaluation.py
+      hash: md5
+      md5: 4873fbd042ef267d90c3e9c6d2ac3d8b
+      size: 1286
+    - path: src\utils\utilities.py
+      hash: md5
+      md5: b3bf6e84f6b02f55337ff62e9cb36730
+      size: 2667

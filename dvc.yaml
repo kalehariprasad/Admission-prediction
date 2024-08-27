@@ -2,10 +2,29 @@ stages:
   Data_injection:
     cmd: python src/data/data_injection.py
     deps:
-      - src/data/data_injection.py
-      - src/Exception/exception.py
-      - src/logger/my_logging.py
-      - src/utils/utilities.py
-      - data/raw
+    - src/data/data_injection.py
+    - src/Exception/exception.py
+    - src/logger/my_logging.py
+    - src/utils/utilities.py
+    - data/raw
     outs:
-      - data/external # Use a different path
+    - data/external   # Use a different path
+  Data-transformation:
+    cmd: python src\data\data_transformation.py
+    deps:
+    - data/external
+    - src\Exception\exception.py
+    - src\data\data_transformation.py
+    - src\logger\my_logging.py
+    - src\utils\utilities.py
+    outs:
+    - data/processed
+
+  Model_training:
+    cmd: processed -o models
+    deps:
+    - data\
+    - src\Exception\exception.py
+    - src\logger\my_logging.py
+    - src\models\model_training.py
+    - src\utils\utilities.py

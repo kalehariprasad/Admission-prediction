@@ -30,3 +30,33 @@ stages:
       md5: c68908d79cd1fa243b4dd5380f17bb81.dir
       size: 72403
       nfiles: 2
+  Data-transformation:
+    cmd: python src\data\data_transformation.py
+    deps:
+    - path: data/external
+      hash: md5
+      md5: c68908d79cd1fa243b4dd5380f17bb81.dir
+      size: 72403
+      nfiles: 2
+    - path: src\Exception\exception.py
+      hash: md5
+      md5: 9125848bce10891e239bf496874e7a33
+      size: 837
+    - path: src\data\data_transformation.py
+      hash: md5
+      md5: 4edb202303eb0777bc94edb22a92eab3
+      size: 7358
+    - path: src\logger\my_logging.py
+      hash: md5
+      md5: 9006f1ad9690de4a3d1882c859676062
+      size: 1138
+    - path: src\utils\utilities.py
+      hash: md5
+      md5: b3bf6e84f6b02f55337ff62e9cb36730
+      size: 2667
+    outs:
+    - path: data/processed
+      hash: md5
+      md5: d982b03bfa4c69cdbd777c6f7ab00223.dir
+      size: 113512
+      nfiles: 4

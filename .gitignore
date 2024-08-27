@@ -90,5 +90,8 @@ target/
 
 #envronment
 env/
-
+#data folder
 /data
+#models folder
+
+models/

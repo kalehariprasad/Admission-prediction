@@ -21,7 +21,7 @@ stages:
     outs:
     - data/processed
     - models/objects/preprocessor.pkl
-
+  
   Model_training:
     cmd: python src/models/model_training.py
     deps:
@@ -32,9 +32,9 @@ stages:
     - src/utils/utilities.py
     outs:
     - models/model.pkl
-
+ 
   model_evalaution:
-    cmd: python src\models\model_evaluation.py --needs Model_training
+    cmd: python src\models\model_evaluation.py 
     deps:
     - data\processed
     - models\model.pkl
@@ -42,3 +42,4 @@ stages:
     - src\logger\my_logging.py
     - src\models\model_evaluation.py
     - src\utils\utilities.py
+
